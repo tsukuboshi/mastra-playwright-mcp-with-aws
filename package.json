@@ -1,0 +1,14 @@
+{
+  "name": "mastra-mcp-on-ecs",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "mastra:dev": "npm -w app run dev",
+    "cdk:deploy": "npm -w infra run cdk deploy -- --require-approval never",
+    "cdk:destroy": "npm -w infra run cdk destroy --"
+  },
+  "workspaces": [
+    "app",
+    "infra"
+  ]
+}

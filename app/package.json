@@ -1,0 +1,26 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "mastra dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@ai-sdk/amazon-bedrock": "^2.2.7",
+    "@aws-sdk/credential-providers": "^3.787.0",
+    "@mastra/core": "^0.8.2",
+    "@mastra/mcp": "^0.3.9",
+    "@playwright/mcp": "^0.0.10",
+    "mastra": "^0.4.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3"
+  }
+}
