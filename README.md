@@ -1,6 +1,6 @@
-# Mastra MCP with ECS & Bedrock
+# Mastra Playwright MCP with AWS
 
-A CDK project for running Mastra Agent with ECS and Bedrock to interact with MCP Server.  
+AWS CDK project for running Mastra Agent with Amazon ECS and Amazon Bedrock to interact with MCP Server.  
 As an example, this project uses [Playwright MCP server](https://github.com/microsoft/playwright-mcp).
 
 ## Prerequisites

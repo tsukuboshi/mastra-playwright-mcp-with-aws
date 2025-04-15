@@ -1,5 +1,5 @@
 {
-  "name": "mastra-mcp-on-ecs",
+  "name": "mastra-playwright-mcp-on-aws",
   "private": true,
   "version": "1.0.0",
   "scripts": {
