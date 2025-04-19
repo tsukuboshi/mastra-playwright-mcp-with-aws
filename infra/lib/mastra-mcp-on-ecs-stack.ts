@@ -9,20 +9,26 @@ import * as imagedeploy from "cdk-docker-image-deployment";
 import { Construct } from "constructs";
 import * as path from "path";
 
+export interface MastraMcpOnEcsStackProps extends cdk.StackProps {
+  targetEnv: string;
+}
+
 export class MastraMcpOnEcsStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props: MastraMcpOnEcsStackProps) {
     super(scope, id, props);
+
+    const targetEnv = props.targetEnv;
 
     // Create ECR Repository
     const repo = new ecr.Repository(this, "EcrRepository", {
-      repositoryName: "mastra-repo",
+      repositoryName: `mastra-repo-${targetEnv}`,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       emptyOnDelete: true,
     });
 
     // Create VPC and Subnet
     const vpc = new ec2.Vpc(this, "Vpc", {
-      vpcName: "mastra-vpc",
+      vpcName: `mastra-vpc-${targetEnv}`,
       maxAzs: 2,
       subnetConfiguration: [
         {
@@ -35,7 +41,7 @@ export class MastraMcpOnEcsStack extends cdk.Stack {
 
     // Create ECS Cluster
     const cluster = new ecs.Cluster(this, "EcsCluster", {
-      clusterName: "mastra-cluster",
+      clusterName: `mastra-cluster-${targetEnv}`,
       vpc,
     });
 
@@ -64,13 +70,13 @@ export class MastraMcpOnEcsStack extends cdk.Stack {
       "FargateService",
       {
         cluster,
-        serviceName: "mastra-service",
-        loadBalancerName: "mastra-alb",
+        serviceName: `mastra-service-${targetEnv}`,
+        loadBalancerName: `mastra-alb-${targetEnv}`,
         assignPublicIp: true,
         cpu,
         memoryLimitMiB,
         taskImageOptions: {
-          containerName: "mastra-container",
+          containerName: `mastra-container-${targetEnv}`,
           containerPort,
           image,
           environment: {
